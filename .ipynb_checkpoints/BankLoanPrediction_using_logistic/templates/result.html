@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            text-align: center;
+        }
+        h2 {
+            color: #007bff;
+        }
+        .approved {
+            color: green;
+            font-weight: bold;
+        }
+        .rejected {
+            color: red;
+            font-weight: bold;
+        }
+        .feedback {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .feedback ul {
+            list-style: none;
+            padding: 0;
+        }
+        .feedback li {
+            background: #ffebcc;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Loan Prediction Result</h2>
+        <hr>
+        <p>Your loan application is likely to be 
+            <span class="{% if prediction == 'Approved' %}approved{% else %}rejected{% endif %}">
+                {{ prediction }}!
+            </span>
+        </p>
+        <p><strong>Approval Probability:</strong> {{ probability }}%</p>
+        <a href="/" class="button">Try Again</a>
+        
+        {% if feedback %}
+        <div class="feedback">
+            <h4>Feedback & Suggestions:</h4>
+            <ul>
+                {% for item in feedback %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            <p class="approved">✅ No specific issues detected!</p>
+        {% endif %}
+    </div>
+</body>
+</html>
